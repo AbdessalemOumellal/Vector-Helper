@@ -1,0 +1,116 @@
+
+import java.lang.*;
+
+/**
+ * Created by Izem on 13/10/2017.
+ */
+public class VectorHelper {
+
+    /**
+     *
+     */
+
+    private final int MAX = 3000 ;
+    private double[] Vec;
+    private double[] Sum;
+    private double c=0 ;
+
+
+    public double [] getVec() {return Vec;}
+
+    /**
+     * @returns Vec length .
+     */
+
+
+    /**
+     * This method to sort out v array elements.
+     * @param v : array .
+     * @param deb : indexes the element which needs to get sorted.
+     * @param fin : indexes last element.
+     */
+    public void TriSelection(double v[],int deb, int fin) {
+     int i = deb+1 ;
+        while (deb<fin && i<v.length) {
+         if(v[deb] > v[i]) {
+             c = v[deb];
+             v[deb] = v [i] ;
+             v[i] = c ;
+             i++;
+         }
+         else i++;
+         if(i==v.length) {
+             deb++;
+             TriSelection(v,deb,fin);
+         }
+     }
+
+    }
+
+    /**
+     * this method sorts array of the VectorHelper Array.
+     */
+    public void Sort() {
+        TriSelection(Vec,0,Vec.length-1);
+    }
+
+
+    /**
+     * this methods creates and implementes an array Vec with length n and elements a.
+     * @param n: Array length.
+     * @param a : Array Elements.
+     */
+    public void setVector(int n,double ...a){
+        Vec = new double[n] ;
+        if (n == Vec.length) {
+           for (int i=0;i<n;i++){
+               Vec[i]=a[i];
+           }
+        }
+
+    }
+
+    /**
+     *this method prints Vec array elements.
+     */
+    public void PrintElements() {
+        for (int i =0;i< Vec.length;i++){
+            System.out.println(Vec[i]);
+        }
+    }
+
+    /**
+     * this method sums two Vectors if they have the same length, throws an exception else.
+     * @param V1:Array .
+     * @param V2: Array .
+     * @return: the summed Array.
+     * @throws TailleException
+     */
+    public double[] Sommer(double V1[], double V2[])  throws TailleException{
+
+        if (V1.length != V2.length) throw new TailleException() ;
+        else {
+            Sum = new double[V1.length];
+            for(int i=0;i<V1.length;i++) {
+              Sum[i] = V1[i] + V2[i] ;
+            }
+            return Sum;
+        }
+    }
+
+
+    /**
+     * this methode generates automatically the Array Vec.
+     * @param taille : length .
+     */
+    public void GenererAuto(int taille) {
+       Vec = new double [taille] ;
+       for(int i=0 ; i<taille;i++) {
+           Vec[i] = Math.random()%54897846 ;
+       }
+    }
+
+
+
+
+}
